@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mein Überblick</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f4f1;--card:#fff;--ink:#16302f;--mute:#5d726f;--line:#d8e0dc;--acc:#0f6b64;--acc2:#e8a317;--bad:#b3402e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1b1a;--card:#172927;--ink:#e6efec;--mute:#93aaa5;--line:#2a4240;--acc:#4cc3b8;--acc2:#f0b942;--bad:#ef8a77}}
+:root[data-theme="dark"]{--bg:#0f1b1a;--card:#172927;--ink:#e6efec;--mute:#93aaa5;--line:#2a4240;--acc:#4cc3b8;--acc2:#f0b942;--bad:#ef8a77}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Bricolage Grotesque",system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:28px;font-weight:800;margin:6px 0 2px;letter-spacing:-.02em}
+.sub{color:var(--mute);margin:0 0 18px}
+nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:18px;padding-bottom:4px}
+nav button{flex:none;border:1px solid var(--line);background:transparent;color:var(--ink);padding:8px 14px;border-radius:99px;font:inherit;cursor:pointer}
+nav button[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
+.big{background:var(--acc);color:#fff;border-radius:18px;padding:22px}
+.big b{font-size:44px;font-weight:800;letter-spacing:-.03em;display:block;line-height:1.1}
+.big span{opacity:.85}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0 18px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--card)}
+.stat b{font-size:22px;display:block}.stat span{color:var(--mute);font-size:14px}
+h2{font-size:18px;margin:22px 0 8px}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.row small{color:var(--mute);display:block}
+.row .amt{font-weight:600;white-space:nowrap}
+.row.done .t{text-decoration:line-through;color:var(--mute)}
+.x{border:0;background:none;color:var(--mute);cursor:pointer;font-size:20px;padding:4px 8px}
+.x:hover{color:var(--bad)}
+form,.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding:14px;border:1px dashed var(--line);border-radius:12px;margin-bottom:12px}
+label{font-size:13px;color:var(--mute);display:grid;gap:3px}
+input,select{font:inherit;padding:9px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);width:100%}
+.add{background:var(--acc2);color:#1a1a1a;border:0;border-radius:8px;padding:10px;font:inherit;font-weight:600;cursor:pointer;align-self:end}
+.bar{height:8px;background:var(--line);border-radius:4px;margin-top:4px}.bar i{display:block;height:100%;background:var(--acc);border-radius:4px}
+.empty{color:var(--mute);padding:18px 0}
+.warn{font-size:13px;color:var(--mute);border-left:3px solid var(--acc2);padding:4px 10px;margin:10px 0}
+footer{margin-top:30px;font-size:13px;color:var(--mute)}
+footer button{background:none;border:0;color:var(--bad);cursor:pointer;font:inherit;text-decoration:underline;padding:0}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:6px 0 16px}
+header>b{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.hbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer}
+.shell.solo{display:block}.shell.solo nav{display:none}
+@media(min-width:900px){main{max-width:1000px}.shell{display:grid;grid-template-columns:190px 1fr;gap:28px}.shell nav{flex-direction:column;overflow:visible;position:sticky;top:12px;align-self:start}.shell nav button{text-align:left;border-radius:10px}}
+.auth{max-width:420px;margin:24px auto}
+form.one{grid-template-columns:1fr;border-style:solid}
+.msg{color:var(--bad);font-size:14px;margin:0}
+.lk{background:none;border:0;color:var(--acc);text-decoration:underline;cursor:pointer;font:inherit;padding:0}
+.lg h3{font-size:16px;margin:18px 0 4px}.lg p,.lg li{color:var(--mute);margin:4px 0}
+#fl{display:flex;flex-wrap:wrap;gap:14px}
+pre{white-space:pre-wrap;word-break:break-word;font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px;max-height:260px;overflow:auto}
+
+:root{--chev:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%235d726f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E")}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--chev:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%2393aaa5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E")}}
+:root[data-theme="dark"]{--chev:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%2393aaa5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E")}
+input,select{min-height:46px;padding:10px 14px;border-radius:12px;background-color:var(--card);transition:border-color .15s,box-shadow .15s}
+input:hover,select:hover{border-color:var(--mute)}
+input:focus,select:focus{border-color:var(--acc);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 28%,transparent)}
+select{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:42px;background-image:var(--chev);background-repeat:no-repeat;background-position:right 14px center;background-size:16px}
+select option{background:var(--card);color:var(--ink)}
+input[type=checkbox]{min-height:0;padding:0;accent-color:var(--acc)}
+form,.form{border-radius:18px;padding:16px;gap:12px}
+.stat{border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.big{border-radius:22px}
+.add{min-height:46px;border-radius:12px;transition:filter .15s,transform .1s}
+.add:hover{filter:brightness(1.06)}.add:active{transform:scale(.98)}
+nav button,.hbtn{transition:background-color .15s,border-color .15s}
+nav button:hover:not([aria-selected=true]),.hbtn:hover{border-color:var(--mute)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<header id="hd"></header>
+<div class="shell"><nav id="nav" role="tablist"></nav>
+<div id="view"></div></div>
+<footer>
+<p id="fl"></p>
+<p>Reine Übersicht zum Selbsteintragen. Keine Finanzberatung, keine Vermittlung, kein Verkauf, keine Bankanbindung. Die Daten bleiben in diesem Browser. Nur wenn du die KI-Auswertung startest, gehen die dafür nötigen Zahlen an Claude.</p>
+<button id="reset">Alle Daten löschen</button>
+</footer>
+</main>
+<script>
+var TABS=[["home","Übersicht"],["subs","Abos"],["rates","Raten"],["book","Buchungen"],["todos","To-dos"],["banks","Banken"],["accts","Konten"],["ai","Auswertung"],["set","Einstellungen"]];
+var CFG={
+subs:{t:"Neues Abo",f:[["name","Name","text"],["amt","Betrag (€)","number"],["iv","Intervall","select",["Monat","Quartal","Jahr","Woche"]],["next","Nächste Zahlung","date"],["cat","Kategorie","select",["Streaming","Software","Gesundheit","Mobilität","Versicherung","Sonstiges"]]],empty:"Noch kein Abo eingetragen."},
+rates:{t:"Neue Ratenzahlung",f:[["name","Wofür","text"],["amt","Rate pro Monat (€)","number"],["left","Verbleibende Raten","number"],["next","Nächste Rate","date"]],empty:"Keine Ratenzahlung eingetragen."},
+todos:{t:"Neue Aufgabe",f:[["name","Aufgabe","text"],["due","Fällig am","date"]],empty:"Keine Aufgaben. Trag ein, was ansteht."},
+book:{t:"Buchung eintragen",f:[["name","Beschreibung","text"],["amt","Betrag (€)","number"],["dir","Art","select",["Abbuchung","Überweisung","Einnahme"]],["date","Datum","date"],["bank","Bank","select",function(){return [["","Keine Bank"]].concat(S.banks.map(function(b){return [b.id,b.name+" ("+b.type+")"]}))}],["link","Zahlung zuordnen","select",function(){return [["","Keiner Zahlung zuordnen"]].concat(S.subs.map(function(x){return ["s:"+x.id,"Abo: "+x.name]}),S.rates.map(function(x){return ["r:"+x.id,"Rate: "+x.name]}))}]],empty:"Noch keine Buchung. Trag ein, was von deinem Konto gegangen ist."},
+banks:{t:"Neue Bank",f:[["name","Bank","text"],["type","Kontoart","select",["Girokonto","Tagesgeld","Festgeld","Kreditkarte","Depot","Sparkonto","Sonstiges"]],["amt","Kontogebühr (€)","number"],["iv","Gebühr pro","select",["Monat","Quartal","Jahr"]],["bal","Kontostand (€, optional)","number"],["note","Notiz (z. B. Gebühr entfällt ab Geldeingang)","text"]],empty:"Noch keine Bank eingetragen."},
+accts:{t:"Neues Konto",f:[["name","Anbieter","text"],["cat","Art","select",["Bank","Streaming","Shop","Versicherung","Telekom","Sonstiges"]],["note","Notiz (z. B. Login-E-Mail)","text"]],empty:"Noch kein Konto eingetragen."}
+};
+var S={subs:[],rates:[],todos:[],accts:[],banks:[]},tab="home";
+var U=null,legal=null,authMode="login";
+(function(){var us=lsGet("ub_users",[]),id=lsGet("ub_session",null);U=us.find(function(x){return x.id===id})||null;if(U)Object.assign(S,lsGet("ub_data_"+U.id,{}))})();
+function lsGet(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function lsDel(k){try{localStorage.removeItem(k)}catch(e){}}
+function save(){if(U)lsSet("ub_data_"+U.id,S)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function eur(n){return n.toLocaleString("de-DE",{style:"currency",currency:"EUR"})}
+function monthly(s){var f={Monat:1,Quartal:1/3,Jahr:1/12,Woche:52/12}[s.iv]||1;return (+s.amt||0)*f}
+function nextDue(s){if(!s.next)return null;var d=new Date(s.next+"T00:00:00"),t=new Date();t.setHours(0,0,0,0);
+ var n=0;while(d<t&&n<500){n++;if(s.iv==="Jahr")d.setFullYear(d.getFullYear()+1);else if(s.iv==="Quartal")d.setMonth(d.getMonth()+3);else if(s.iv==="Woche")d.setDate(d.getDate()+7);else d.setMonth(d.getMonth()+1)}
+ return d}
+function fd(d){return d.toLocaleDateString("de-DE",{day:"2-digit",month:"short"})}
+function nav(){document.getElementById("nav").innerHTML=TABS.map(function(t){return '<button role="tab" data-t="'+t[0]+'" aria-selected="'+(t[0]===tab)+'">'+t[1]+'</button>'}).join("")}
+function home(){
+ var sm=S.subs.reduce(function(a,s){return a+monthly(s)},0),rm=S.rates.reduce(function(a,r){return a+(+r.amt||0)},0),bm=S.banks.reduce(function(a,b){return a+monthly(b)},0);
+ var debt=S.rates.reduce(function(a,r){return a+(+r.amt||0)*(+r.left||0)},0),open=S.todos.filter(function(t){return!t.done}).length;
+ var ym=today().slice(0,7),out=0,inc=0,bal=0,anyBal=false;
+ S.book.forEach(function(x){if((x.date||"").slice(0,7)===ym){if(x.dir==="Einnahme")inc+=+x.amt;else out+=+x.amt}});
+ S.banks.forEach(function(b){if(hasBal(b)){bal+=+b.bal;anyBal=true}});
+ var due=[],td=today();
+ S.subs.forEach(function(x,i){if(x.next&&x.next<=td)due.push({t:"subs",i:i,n:x.name,a:+x.amt,d:x.next})});
+ S.rates.forEach(function(x,i){if(x.next&&x.next<=td&&+x.left>0)due.push({t:"rates",i:i,n:x.name+" (Rate)",a:+x.amt,d:x.next})});
+ var soon=[],lim=new Date();lim.setDate(lim.getDate()+30);
+ S.subs.forEach(function(s){var d=nextDue(s);if(d&&d<=lim)soon.push({d:d,n:s.name,a:+s.amt})});
+ S.rates.forEach(function(r){var d=nextDue({next:r.next,iv:"Monat"});if(d&&d<=lim&&+r.left>0)soon.push({d:d,n:r.name+" (Rate)",a:+r.amt})});
+ soon.sort(function(a,b){return a.d-b.d});
+ var cats={};S.subs.forEach(function(s){cats[s.cat]=(cats[s.cat]||0)+monthly(s)});
+ var mx=Math.max.apply(null,Object.values(cats).concat([1]));
+ var h='<div class="big"><span>Feste Kosten pro Monat</span><b>'+eur(sm+rm+bm)+'</b><span>'+eur((sm+rm+bm)*12)+' pro Jahr</span></div>';
+ h+='<div class="grid"><div class="stat"><b>'+S.subs.length+'</b><span>Abos ('+eur(sm)+'/Monat)</span></div><div class="stat"><b>'+eur(bm)+'</b><span>Kontogebühren pro Monat</span></div><div class="stat"><b>'+eur(out)+'</b><span>Ausgaben diesen Monat (gebucht)</span></div><div class="stat"><b>'+eur(inc)+'</b><span>Eingänge diesen Monat</span></div>'+(anyBal?'<div class="stat"><b>'+eur(bal)+'</b><span>Kontostände gesamt</span></div>':'')+'<div class="stat"><b>'+eur(debt)+'</b><span>Offene Raten gesamt</span></div><div class="stat"><b>'+open+'</b><span>Offene To-dos</span></div><div class="stat"><b>'+S.accts.length+'</b><span>Konten</span></div></div>';
+ if(due.length)h+='<h2>Noch nicht gebucht</h2><p class="sub" style="margin:0 0 4px">Diese Zahlungen waren fällig. Hat die Bank sie abgebucht, trag sie ein.</p>'+due.map(function(x){return '<div class="row"><span>'+esc(x.n)+'<small>fällig am '+fd(new Date(x.d+"T00:00:00"))+'</small></span><span><span class="amt">'+eur(x.a)+'</span> <button class="hbtn" data-a="pay" data-ty="'+x.t+'" data-i="'+x.i+'">Als gebucht eintragen</button></span></div>'}).join("");
+ h+='<h2>In den nächsten 30 Tagen</h2>';
+ h+=soon.length?soon.map(function(x){return '<div class="row"><span>'+esc(x.n)+'<small>'+fd(x.d)+'</small></span><span class="amt">'+eur(x.a)+'</span></div>'}).join(""):'<p class="empty">Nichts fällig. Trag Abos und Raten mit Datum ein.</p>';
+ var ck=Object.keys(cats).sort(function(a,b){return cats[b]-cats[a]});
+ if(ck.length){h+='<h2>Abos nach Kategorie</h2>'+ck.map(function(k){return '<div style="margin-bottom:10px"><div class="row" style="border:0;padding:0"><span>'+esc(k)+'</span><span class="amt">'+eur(cats[k])+'/Monat</span></div><div class="bar"><i style="width:'+(cats[k]/mx*100)+'%"></i></div></div>'}).join("")}
+ return h}
+function list(k){
+ var c=CFG[k],h='<form data-k="'+k+'"><strong style="grid-column:1/-1">'+c.t+'</strong>';
+ c.f.forEach(function(f){h+='<label>'+f[1]+(f[2]==="select"?'<select name="'+f[0]+'">'+(typeof f[3]==="function"?f[3]():f[3]).map(function(o){return Array.isArray(o)?'<option value="'+esc(o[0])+'">'+esc(o[1])+'</option>':'<option>'+o+'</option>'}).join("")+'</select>':'<input name="'+f[0]+'" type="'+f[2]+'"'+(f[2]==="number"?' step="0.01"'+(f[0]==="bal"?'':' min="0"'):'')+(f[0]==="name"?' required':'')+(f[0]==="date"?' value="'+today()+'"':'')+'></label>').replace(/<\/label>$/,"")+'</label>'});
+ h+='<button class="add">Speichern</button></form>';
+ if(k==="book")h+='<p class="warn">Trag ein, was von deinem Konto abgebucht oder überwiesen wurde. Ordnest du die Buchung einem Abo oder einer Rate zu, rückt deren nächster Termin vor und eine Rate zählt herunter. Ist bei der Bank ein Kontostand eingetragen, passt er sich an. Die App liest dein Konto nicht aus, du trägst alles selbst ein.</p>';
+ if(k==="banks")h+='<p class="warn">Trag keine IBAN oder Kontonummer ein. Es reichen Bank, Kontoart, Gebühr und optional dein Kontostand.</p>';
+ if(k==="accts")h+='<p class="warn">Trag hier keine Passwörter ein. Notiere nur, wo du ein Konto hast.</p>';
+ if(!S[k].length)return h+'<p class="empty">'+c.empty+'</p>';
+ return h+S[k].map(function(it,i){
+  var sub="",amt="";
+  if(k==="subs"){var d=nextDue(it);amt=eur(+it.amt||0)+" / "+it.iv;sub=esc(it.cat)+(d?" · nächste Zahlung "+fd(d):"")}
+  if(k==="rates"){amt=eur(+it.amt||0);sub=(it.left||0)+" Raten übrig · noch "+eur((+it.amt||0)*(+it.left||0))}
+  if(k==="todos"){sub=it.due?"fällig "+fd(new Date(it.due+"T00:00:00")):"ohne Datum"}
+  if(k==="banks"){amt=(+it.amt>0)?eur(+it.amt)+" / "+it.iv:"gebührenfrei";sub=esc(it.type)+(hasBal(it)?" · Stand "+eur(+it.bal):"")+(it.note?" · "+esc(it.note):"")}
+  if(k==="book"){var bk=S.banks.find(function(x){return x.id===it.bank}),ln=it.li?(it.lt==="s"?S.subs:S.rates).find(function(x){return x.id===it.li}):null;
+   amt=(it.dir==="Einnahme"?"+ ":"− ")+eur(+it.amt);sub=fd(new Date(it.date+"T00:00:00"))+" · "+esc(it.dir)+(bk?" · "+esc(bk.name):"")+(ln?" · zugeordnet: "+esc(ln.name):"")}
+  if(k==="accts"){sub=esc(it.cat)+(it.note?" · "+esc(it.note):"")}
+  var chk=k==="todos"?'<input type="checkbox" data-c="'+i+'" style="width:22px;height:22px;margin-right:10px"'+(it.done?" checked":"")+' aria-label="Erledigt">':"";
+  return '<div class="row'+(it.done?" done":"")+'"><span style="display:flex;align-items:center">'+chk+'<span class="t">'+esc(it.name)+'<small>'+sub+'</small></span></span><span><span class="amt">'+amt+'</span><button class="x" data-d="'+i+'" aria-label="Löschen">×</button></span></div>'}).join("")}
+var PROMPT="Du bist ein Auswertungsassistent in einer Übersichts-App für Abos, Raten und Kontogebühren. Antworte auf Deutsch in einfachem Fließtext ohne Markdown-Zeichen, mit kurzen Zwischenüberschriften in eigenen Zeilen, höchstens 250 Wörter. Beschreibe nur die gelieferten Zahlen: 1) die größten Kostenblöcke und ihren Anteil an den festen Monatskosten, 2) Überschneidungen innerhalb derselben Kategorie (z. B. mehrere Streamingdienste), 3) Kontogebühren und Jahressummen, 4) Zeiträume mit gehäuften Zahlungen, 5) drei neutrale Prüffragen an den Nutzer, etwa 'Nutzt du Abo X noch regelmäßig?'. Gib keine Finanz-, Anlage-, Steuer- oder Rechtsberatung. Empfiehl keine Produkte, Anbieter, Banken, Kredite, Versicherungen oder Geldanlagen und fordere nicht zu Kündigungen oder Wechseln auf. Formuliere als Beobachtung, nicht als Anweisung. Wenn Daten fehlen, sag das kurz. Daten (JSON): ";
+function aiView(){
+ var h='<p class="warn">Die Auswertung beschreibt nur deine eingetragenen Zahlen. Sie ist keine Finanz-, Anlage- oder Steuerberatung und empfiehlt keine Produkte oder Anbieter. Beim Klick auf "Analyse erstellen" gehen Abos, Raten, Banken (ohne Notizen) und die Zahl deiner To-dos und Konten an Claude. <button class="lk" data-a="legal" data-l="ki">Mehr zum KI-Einsatz</button></p>';
+ h+='<form id="goal"><strong style="grid-column:1/-1">Sparziel-Rechner</strong><label>Zielbetrag (€)<input name="t" type="number" min="0" step="1" required></label><label>In wie vielen Monaten<input name="m" type="number" min="1" step="1" required></label><button class="add">Rechnen</button></form><p id="goalout" class="empty" style="margin-top:0"></p>';
+ h+='<button class="add" id="run" style="width:100%;margin-bottom:12px">Analyse erstellen</button><div id="aiout" style="white-space:pre-wrap"></div>';
+ return h}
+function fixed(){return S.subs.reduce(function(a,x){return a+monthly(x)},0)+S.rates.reduce(function(a,r){return a+(+r.amt||0)},0)+S.banks.reduce(function(a,b){return a+monthly(b)},0)}
+async function runAI(){
+ var out=document.getElementById("aiout");
+ if(!(S.subs.length||S.rates.length||S.banks.length)){out.textContent="Trag zuerst Abos, Raten oder Banken ein.";return}
+ var sample=null;try{sample=window.claude?await claude.use("sample"):null}catch(e){}
+ if(!sample){out.textContent="Die KI-Auswertung ist in dieser Ansicht nicht verfügbar.";return}
+ var d={abos:S.subs.map(function(x){return{name:x.name,betrag:+x.amt||0,intervall:x.iv,kategorie:x.cat}}),raten:S.rates.map(function(r){return{name:r.name,rate:+r.amt||0,verbleibend:+r.left||0}}),banken:S.banks.map(function(b){return{bank:b.name,kontoart:b.type,gebuehr:+b.amt||0,intervall:b.iv}}),offene_todos:S.todos.filter(function(t){return!t.done}).length,konten_anzahl:S.accts.length};
+ out.textContent="Claude wertet aus …";
+ try{await sample(PROMPT+JSON.stringify(d),{cache:false,onText:function(r){out.textContent="Von KI erstellt, keine Beratung.\n\n"+r.text}})}
+ catch(e){out.textContent=e&&e.code==="not_granted"?"Ohne Zustimmung keine Auswertung.":e&&e.code==="rate_limited"?"Zu viele Anfragen. Versuch es später noch einmal.":"Die Auswertung hat nicht geklappt. Versuch es noch einmal."}}
+function b64(b){return btoa(String.fromCharCode.apply(null,new Uint8Array(b)))}
+function newSalt(){return b64(crypto.getRandomValues(new Uint8Array(16)))}
+async function hashPw(pw,salt){var k=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);
+ var bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:Uint8Array.from(atob(salt),function(c){return c.charCodeAt(0)}),iterations:210000,hash:"SHA-256"},k,256);return b64(bits)}
+function start(u){U=u;lsSet("ub_session",u.id);S={subs:[],rates:[],todos:[],accts:[],banks:[]};Object.assign(S,lsGet("ub_data_"+u.id,{}));tab="home";render()}
+function authView(){
+ var r=authMode==="reg";
+ var h='<div class="auth"><h1 style="font-size:26px;margin:0 0 4px">'+(r?"Konto erstellen":"Anmelden")+'</h1><p class="sub">Abos, Raten, Aufgaben und Konten an einem Ort.</p><form class="one" data-f="'+(r?"reg":"login")+'">';
+ if(r)h+='<label>Name (optional)<input name="name" autocomplete="name"></label>';
+ h+='<label>E-Mail<input name="email" type="email" required autocomplete="email"></label><label>Passwort'+(r?' (mind. 10 Zeichen)':'')+'<input name="pw" type="password" required autocomplete="'+(r?"new-password":"current-password")+'"></label>';
+ if(r)h+='<label>Passwort wiederholen<input name="pw2" type="password" required autocomplete="new-password"></label><label style="display:flex;gap:8px;align-items:flex-start"><input name="ok" type="checkbox" style="width:auto;margin-top:5px"><span>Ich stimme den <button type="button" class="lk" data-a="legal" data-l="agb">AGB</button> zu und habe die <button type="button" class="lk" data-a="legal" data-l="datenschutz">Datenschutzerklärung</button> gelesen.</span></label>';
+ h+='<p class="msg" hidden role="alert"></p><button class="add">'+(r?"Registrieren":"Anmelden")+'</button></form><p>'+(r?"Schon ein Konto? ":"Noch kein Konto? ")+'<button class="lk" data-a="mode">'+(r?"Anmelden":"Registrieren")+'</button></p><p class="warn">Demo: Konten und Daten liegen nur in diesem Browser. Für den echten Betrieb braucht die App einen Server mit sicherer Anmeldung.</p></div>';
+ return h}
+function setView(){
+ var M='<p class="msg" hidden role="alert"></p>';
+ return '<h2 style="margin-top:0">Konto</h2><form class="one" data-f="prof"><label>Name<input name="name" value="'+esc(U.name)+'"></label><label>E-Mail<input name="email" type="email" required value="'+esc(U.email)+'"></label><label>Aktuelles Passwort (nur bei neuer E-Mail)<input name="pw" type="password" autocomplete="current-password"></label>'+M+'<button class="add">Speichern</button></form>'+
+ '<h2>Passwort ändern</h2><form class="one" data-f="pw"><label>Aktuelles Passwort<input name="old" type="password" required autocomplete="current-password"></label><label>Neues Passwort (mind. 10 Zeichen)<input name="n1" type="password" required autocomplete="new-password"></label><label>Neues Passwort wiederholen<input name="n2" type="password" required autocomplete="new-password"></label>'+M+'<button class="add">Passwort ändern</button></form>'+
+ '<h2>Meine Daten</h2><p class="sub">Sieh dir an, was zu deinem Konto gespeichert ist.</p><button class="hbtn" data-a="export">Daten anzeigen</button><pre id="exp" hidden></pre>'+
+ '<h2>Konto löschen</h2><p class="sub">Löscht dein Konto und alle eingetragenen Daten dauerhaft.</p><form class="one" data-f="del"><label>Passwort zur Bestätigung<input name="pw" type="password" required autocomplete="current-password"></label>'+M+'<button class="add" style="background:var(--bad);color:#fff">Konto endgültig löschen</button></form>'}
+async function doForm(n,f){
+ var v=function(x){return f.elements[x]?f.elements[x].value:""},m=f.querySelector(".msg");
+ function say(t,ok){m.textContent=t;m.hidden=!t;m.style.color=ok?"var(--acc)":"var(--bad)"}
+ function done(){var q=document.querySelector('[data-f="'+n+'"] .msg');if(q){q.textContent="Gespeichert.";q.hidden=false;q.style.color="var(--acc)"}}
+ var users=lsGet("ub_users",[]);
+ try{
+ if(n==="reg"){
+  var em=v("email").trim().toLowerCase();
+  if(!/^\S+@\S+\.\S+$/.test(em))return say("Bitte gib eine gültige E-Mail-Adresse ein.");
+  if(v("pw").length<10)return say("Das Passwort braucht mindestens 10 Zeichen.");
+  if(v("pw")!==v("pw2"))return say("Die Passwörter stimmen nicht überein.");
+  if(!f.elements.ok.checked)return say("Bitte stimme den AGB zu und bestätige die Datenschutzerklärung.");
+  if(users.some(function(x){return x.email===em}))return say("Für diese E-Mail gibt es schon ein Konto.");
+  var salt=newSalt(),u={id:"u"+Date.now().toString(36),email:em,name:v("name").trim()||em.split("@")[0],salt:salt,hash:await hashPw(v("pw"),salt),created:new Date().toISOString()};
+  users.push(u);lsSet("ub_users",users);start(u);return}
+ if(n==="login"){
+  var e2=v("email").trim().toLowerCase(),w=users.find(function(x){return x.email===e2});
+  if(!w||await hashPw(v("pw"),w.salt)!==w.hash)return say("E-Mail oder Passwort stimmt nicht.");
+  start(w);return}
+ var cur=users.find(function(x){return x.id===U.id});if(!cur)return;
+ if(n==="prof"){
+  var e3=v("email").trim().toLowerCase();
+  if(e3!==cur.email){
+   if(await hashPw(v("pw"),cur.salt)!==cur.hash)return say("Für eine neue E-Mail brauchst du dein aktuelles Passwort.");
+   if(users.some(function(x){return x.email===e3&&x.id!==cur.id}))return say("Diese E-Mail wird schon verwendet.");
+   cur.email=e3}
+  cur.name=v("name").trim()||cur.name;lsSet("ub_users",users);U=cur;render();done();return}
+ if(n==="pw"){
+  if(await hashPw(v("old"),cur.salt)!==cur.hash)return say("Das aktuelle Passwort stimmt nicht.");
+  if(v("n1").length<10)return say("Das neue Passwort braucht mindestens 10 Zeichen.");
+  if(v("n1")!==v("n2"))return say("Die neuen Passwörter stimmen nicht überein.");
+  cur.salt=newSalt();cur.hash=await hashPw(v("n1"),cur.salt);lsSet("ub_users",users);f.reset();done();return}
+ if(n==="del"){
+  if(await hashPw(v("pw"),cur.salt)!==cur.hash)return say("Das Passwort stimmt nicht.");
+  if(!confirm("Konto und alle Daten endgültig löschen? Das kann nicht rückgängig gemacht werden."))return;
+  lsSet("ub_users",users.filter(function(x){return x.id!==cur.id}));lsDel("ub_data_"+cur.id);lsDel("ub_session");
+  U=null;S={subs:[],rates:[],todos:[],accts:[],banks:[]};authMode="login";render()}
+ }catch(err){say("Das hat nicht geklappt. Versuch es noch einmal.")}}
+var LEGAL={
+impressum:`<div class="lg"><h2>Impressum</h2><p class="warn">Vorlage: Trag die Angaben in [eckigen Klammern] vor dem Start ein.</p><h3>Angaben nach § 5 DDG</h3><p>[Vor- und Nachname bzw. Firma mit Rechtsform]<br>[Straße und Hausnummer]<br>[PLZ und Ort]</p><h3>Kontakt</h3><p>E-Mail: [E-Mail-Adresse]<br>Telefon: [optional]</p><h3>Umsatzsteuer-ID</h3><p>[USt-IdNr. nach § 27a UStG, falls vorhanden]</p><h3>Verantwortlich für Inhalte nach § 18 Abs. 2 MStV</h3><p>[Name und Anschrift]</p><h3>Hinweis</h3><p>Diese App ist ein Übersichtswerkzeug. Sie bietet keine Finanz-, Anlage- oder Steuerberatung und vermittelt keine Finanzprodukte.</p></div>`,
+datenschutz:`<div class="lg"><h2>Datenschutzerklärung</h2><p class="warn">Vorlage: An deine tatsächliche Verarbeitung anpassen und rechtlich prüfen lassen.</p><h3>Verantwortlicher</h3><p>[Name und Anschrift wie im Impressum], E-Mail: [Datenschutzkontakt]</p><h3>Welche Daten wir verarbeiten</h3><p>Kontodaten (E-Mail, Name, Passwort nur als Hash) und die Angaben, die du selbst einträgst (Abos, Raten, Banken mit Kontoart, Gebühren und optionalem Kontostand, Buchungen, Aufgaben, Konten). Wir verlangen keine IBAN, Kontonummern oder Passwörter von Drittanbietern und haben keine Bankanbindung.</p><h3>Zwecke und Rechtsgrundlagen</h3><p>Bereitstellung deines Kontos und der App: Art. 6 Abs. 1 lit. b DSGVO. KI-Auswertung: Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, die du bei jedem Start der Auswertung erteilst und jederzeit durch Nichtnutzung widerrufst.</p><h3>KI-Auswertung und Empfänger</h3><p>Bei der Auswertung werden deine Abos, Raten, Bankangaben (ohne Notizen) und die Zahl deiner Aufgaben und Konten an den KI-Anbieter [Anbieter, Sitz, Auftragsverarbeitung/Drittlandübermittlung] übermittelt. Hosting: [Hosting-Anbieter, Standort].</p><h3>Speicherdauer</h3><p>Bis du dein Konto löschst (Einstellungen). Dann entfernen wir Konto und Daten.</p><h3>Cookies und lokaler Speicher</h3><p>Wir nutzen nur technisch notwendigen Speicher für Anmeldung und deine Daten, kein Tracking.</p><h3>Deine Rechte</h3><p>Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch (Art. 15 bis 21 DSGVO). Dazu kannst du Einstellungen und "Meine Daten" nutzen oder uns schreiben. Du kannst dich bei einer Datenschutzaufsichtsbehörde beschweren, z. B. bei der für dich zuständigen Landesbehörde.</p></div>`,
+agb:`<div class="lg"><h2>Allgemeine Geschäftsbedingungen</h2><p class="warn">Vorlage: Rechtlich prüfen lassen und an dein Angebot anpassen.</p><h3>1. Leistung</h3><p>[Anbieter] stellt eine App bereit, mit der Nutzer eigene Abos, Raten, Aufgaben, Konten und Bankangaben selbst eintragen und auswerten. Die App ist [kostenlos / kostenpflichtig: Preise ergänzen].</p><h3>2. Keine Beratung</h3><p>Die App bietet keine Finanz-, Anlage-, Steuer- oder Rechtsberatung und vermittelt oder verkauft keine Finanzprodukte. Auswertungen beschreiben nur deine eigenen Eingaben. Entscheidungen triffst du selbst.</p><h3>3. Konto</h3><p>Du registrierst dich mit E-Mail und Passwort, gibst richtige Daten an und hältst dein Passwort geheim.</p><h3>4. Verfügbarkeit</h3><p>Wir bemühen uns um eine durchgehende Verfügbarkeit, schulden sie aber nicht.</p><h3>5. Haftung</h3><p>[Haftungsregelung von einem Anwalt formulieren lassen. Unbeschränkt bleibt die Haftung für Vorsatz, grobe Fahrlässigkeit, Verletzung von Leben, Körper, Gesundheit und nach dem Produkthaftungsgesetz.]</p><h3>6. Kündigung und Löschung</h3><p>Du kannst dein Konto jederzeit in den Einstellungen löschen.</p><h3>7. Änderungen und Recht</h3><p>[Regelung zu Änderungen der AGB]. Es gilt deutsches Recht, zwingende Verbraucherschutzvorschriften deines Wohnsitzstaats bleiben unberührt.</p></div>`,
+ki:`<div class="lg"><h2>Hinweis zum KI-Einsatz</h2><p class="warn">Vorlage: Mit einer rechtlichen Prüfung zur KI-Verordnung (EU AI Act) abgleichen.</p><h3>Wo KI zum Einsatz kommt</h3><p>Nur im Bereich "Auswertung". Dort erzeugt ein KI-System ([Modell/Anbieter, z. B. Claude von Anthropic]) einen Text über deine Eingaben. Du erkennst die Ausgabe am Hinweis "Von KI erstellt".</p><h3>Was die KI nicht tut</h3><p>Sie bewertet keine Kreditwürdigkeit, trifft keine Entscheidungen mit rechtlicher Wirkung über dich, gibt keine Anlage- oder Finanzberatung und empfiehlt keine Produkte oder Anbieter.</p><h3>Grenzen</h3><p>KI-Texte können Fehler enthalten. Prüfe Aussagen anhand deiner Unterlagen.</p><h3>Deine Kontrolle</h3><p>Die Auswertung startet nur auf deinen Klick und nach deiner Zustimmung. Du entscheidest allein, was du mit dem Ergebnis machst.</p><h3>Kontakt</h3><p>Fragen oder Beschwerden: [E-Mail-Adresse]</p></div>`};
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function p2(n){return String(n).padStart(2,"0")}
+function today(){var d=new Date();return d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate())}
+function addIv(str,iv){var d=new Date(str+"T00:00:00");if(iv==="Jahr")d.setFullYear(d.getFullYear()+1);else if(iv==="Quartal")d.setMonth(d.getMonth()+3);else if(iv==="Woche")d.setDate(d.getDate()+7);else d.setMonth(d.getMonth()+1);return d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate())}
+function ensure(){S.book=S.book||[];["subs","rates","banks"].forEach(function(k){S[k].forEach(function(x){if(!x.id)x.id=uid()})})}
+function hasBal(b){return b.bal!==""&&b.bal!=null&&!isNaN(+b.bal)}
+function addBook(o){
+ var amt=+o.amt;if(!(amt>0))return;
+ o.amt=amt;o.date=o.date||today();
+ if(o.link){var q=o.link.split(":"),it=(q[0]==="s"?S.subs:S.rates).find(function(x){return x.id===q[1]});
+  if(it){o.lt=q[0];o.li=q[1];o.prev=it.next;
+   if(q[0]==="r"){o.prevLeft=it.left;it.left=Math.max(0,(+it.left||0)-1)}
+   it.next=addIv(it.next||o.date,q[0]==="s"?it.iv:"Monat")}}
+ if(o.bank){var b=S.banks.find(function(x){return x.id===o.bank});
+  if(b&&hasBal(b)){var d=o.dir==="Einnahme"?amt:-amt;b.bal=Math.round((+b.bal+d)*100)/100;o.bd=d}}
+ S.book.unshift(o);S.book.sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:0});save();render()}
+function undoBook(i){var o=S.book[i];if(!o)return;
+ if(o.li){var it=(o.lt==="s"?S.subs:S.rates).find(function(x){return x.id===o.li});if(it){it.next=o.prev;if(o.lt==="r")it.left=o.prevLeft}}
+ if(o.bd){var b=S.banks.find(function(x){return x.id===o.bank});if(b&&hasBal(b))b.bal=Math.round((+b.bal-o.bd)*100)/100}}
+function render(){
+ ensure();
+ var app=!!U&&!legal,v=document.getElementById("view");
+ document.querySelector(".shell").classList.toggle("solo",!app);
+ document.getElementById("reset").hidden=!app;
+ document.getElementById("fl").innerHTML=[["impressum","Impressum"],["datenschutz","Datenschutz"],["agb","AGB"],["ki","KI-Hinweis"]].map(function(l){return '<button class="lk" data-a="legal" data-l="'+l[0]+'">'+l[1]+'</button>'}).join("");
+ document.getElementById("hd").innerHTML='<b>Mein Überblick</b>'+(U?'<span><button class="hbtn" data-a="set">'+esc(U.name)+'</button> <button class="hbtn" data-a="logout">Abmelden</button></span>':"");
+ if(legal){v.innerHTML='<button class="lk" data-a="back">← Zurück</button>'+LEGAL[legal];return}
+ if(!U){v.innerHTML=authView();return}
+ nav();v.innerHTML=tab==="home"?home():tab==="ai"?aiView():tab==="set"?setView():list(tab)}
+document.addEventListener("click",function(e){
+ var t=e.target;
+ if(t.dataset.t){tab=t.dataset.t;render()}
+ if(t.dataset.d!==undefined){if(tab==="book")undoBook(+t.dataset.d);S[tab].splice(+t.dataset.d,1);save();render()}
+ if(t.id==="run")runAI();
+ var a=t.dataset.a;
+ if(a==="pay"){var arr=S[t.dataset.ty],pi=arr&&arr[+t.dataset.i];if(pi)addBook({id:uid(),name:pi.name,amt:pi.amt,dir:"Abbuchung",date:pi.next,bank:"",link:(t.dataset.ty==="subs"?"s:":"r:")+pi.id})}
+ if(a==="mode"){authMode=authMode==="reg"?"login":"reg";render()}
+ if(a==="legal"){legal=t.dataset.l;render();window.scrollTo(0,0)}
+ if(a==="back"){legal=null;render()}
+ if(a==="set"){tab="set";render()}
+ if(a==="logout"){U=null;lsDel("ub_session");tab="home";render()}
+ if(a==="export"){var x=document.getElementById("exp");x.textContent=JSON.stringify({konto:{name:U.name,email:U.email,erstellt:U.created},daten:S},null,2);x.hidden=false}
+ if(t.id==="reset"&&confirm("Wirklich alle Daten löschen?")){S={subs:[],rates:[],todos:[],accts:[],banks:[]};save();render()}
+});
+document.addEventListener("change",function(e){if(e.target.dataset.c!==undefined){var it=S.todos[+e.target.dataset.c];it.done=e.target.checked;save();render()}});
+document.addEventListener("submit",function(e){e.preventDefault();var f=e.target,k=f.dataset.k,o={};
+ if(f.dataset.f){doForm(f.dataset.f,f);return}
+ if(f.id==="goal"){var t=+f.t.value,m=+f.m.value;if(t>0&&m>0)document.getElementById("goalout").textContent="Für "+eur(t)+" in "+m+" Monaten: "+eur(t/m)+" pro Monat zurücklegen. Zum Vergleich liegen deine festen Kosten bei "+eur(fixed())+" pro Monat.";return}
+ new FormData(f).forEach(function(v,n){o[n]=v});if(!o.name||!o.name.trim())return;o.id=uid();if(k==="book"){addBook(o);return}S[k].push(o);save();render()});
+render();
+</script>
+</body>
+</html>
