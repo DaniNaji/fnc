@@ -1,24 +1,77 @@
-# Geheimnisse und Zugangsdaten
+# ==========================================
+# GEHEIMNISSE, SCHLÜSSEL & ZUGANGSDATEN
+# ==========================================
+# Umgebungsvariablen (NIEMALS committen)
 .env
 .env.*
+*.env
 !.env.example
+!**/.env.example
+
+# Zertifikate, Schlüssel & Signaturen
 *.pem
 *.key
 *.p12
 *.pfx
-secrets/
+*.pkcs12
+*.cer
+*.crt
+*.der
+
+# Android & iOS Signing Keys (Play Store / App Store)
+*.keystore
+*.jks
+*.mobileprovision
+*.provisionprofile
+
+# Google & Apple Cloud-Zugangsdaten
 credentials*.json
 service-account*.json
+google-services.json
+GoogleService-Info.plist
+secrets/
+private/
 
-# Abhängigkeiten und Builds
+# ==========================================
+# ANWENDUNGSDATEN & DATENBANKEN
+# ==========================================
+data/
+**/data/
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+app_database.json
+
+# ==========================================
+# ABHÄNGIGKEITEN & BUILDS
+# ==========================================
 node_modules/
 dist/
 build/
 .vercel/
 .next/
+*.tsbuildinfo
 
-# System und Editor
+# Mobile Platform Builds (werden durch `npx cap sync` generiert)
+frontend/android/app/build/
+frontend/ios/App/build/
+
+# ==========================================
+# LOGS & TEMPORÄRE DATEIEN
+# ==========================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ==========================================
+# SYSTEM & EDITOREN
+# ==========================================
 .DS_Store
 Thumbs.db
 .idea/
-*.log
+.vscode/
+*.swp
+*.swo
