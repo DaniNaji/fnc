@@ -1,0 +1,14 @@
+{
+  "name": "meinueberblick-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mein Überblick - Fullstack Finanzapp (React + Express + Mistral AI)",
+  "main": "start.js",
+  "scripts": {
+    "install:all": "npm --prefix backend install --include=dev && npm --prefix frontend install --include=dev",
+    "build": "npm --prefix frontend install --include=dev && npm --prefix frontend run build && npm --prefix backend install --include=dev && npm --prefix backend run build",
+    "start": "node start.js",
+    "dev": "node start.js"
+  }
+}
+
