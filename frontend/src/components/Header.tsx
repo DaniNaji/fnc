@@ -15,49 +15,26 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, setTab, openLegal })
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '12px 0 18px',
-        borderBottom: '1px solid var(--border)',
-        marginBottom: '20px',
-      }}
-    >
+    <header className="app-header">
       <div
-        style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+        className="app-header-brand"
         onClick={() => setTab('home')}
       >
-        <div
-          style={{
-            width: '38px',
-            height: '38px',
-            borderRadius: '10px',
-            background: 'var(--acc)',
-            color: '#fff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: '800',
-            fontSize: '18px',
-          }}
-        >
+        <div className="app-header-logo">
           Ü
         </div>
-        <div>
-          <h1 style={{ fontSize: '20px', lineHeight: 1.1 }}>Mein Überblick</h1>
-          <span style={{ fontSize: '11px', color: 'var(--ink-secondary)', fontWeight: 500 }}>
+        <div className="app-header-titles">
+          <h1>Mein Überblick</h1>
+          <span className="app-header-subtitle">
             Finanzen, Abos & KI-Insights
           </span>
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <div className="app-header-actions">
         <button
           onClick={toggleTheme}
-          className="btn-secondary"
-          style={{ padding: '8px 10px', borderRadius: '50%' }}
+          className="btn-secondary app-header-icon-btn"
           aria-label="Theme umschalten"
           title={theme === 'dark' ? 'Helles Design' : 'Dunkles Design'}
         >
@@ -68,17 +45,15 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, setTab, openLegal })
           <>
             <button
               onClick={() => setTab('set')}
-              className={`btn-secondary ${currentTab === 'set' ? 'active' : ''}`}
-              style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
+              className={`btn-secondary app-header-user-btn ${currentTab === 'set' ? 'active' : ''}`}
               title="Einstellungen & Konto"
             >
-              <UserIcon size={16} />
-              <span>{user.name}</span>
+              <UserIcon size={16} style={{ flexShrink: 0 }} />
+              <span className="app-header-username">{user.name}</span>
             </button>
             <button
               onClick={logout}
-              className="btn-secondary"
-              style={{ padding: '8px 10px' }}
+              className="btn-secondary app-header-icon-btn"
               title="Abmelden"
               aria-label="Abmelden"
             >
