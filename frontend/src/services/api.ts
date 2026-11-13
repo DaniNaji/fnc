@@ -6,7 +6,11 @@ import {
   AiStatus,
 } from '../types';
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const isNativeMobile =
+  typeof window !== 'undefined' &&
+  (window.location.protocol === 'capacitor:' || window.location.protocol === 'ionic:');
+
+const API_BASE = import.meta.env.VITE_API_URL || (isNativeMobile ? 'https://fnc.bonto.page' : '');
 
 class ApiService {
   private token: string | null = null;
