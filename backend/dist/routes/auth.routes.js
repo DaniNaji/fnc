@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_controller_1 = require("../controllers/auth.controller");
+const auth_middleware_1 = require("../middleware/auth.middleware");
+const validate_middleware_1 = require("../middleware/validate.middleware");
+const router = (0, express_1.Router)();
+router.post('/register', (0, validate_middleware_1.validateBody)(auth_controller_1.registerSchema), (req, res) => auth_controller_1.authController.register(req, res));
+router.post('/login', (0, validate_middleware_1.validateBody)(auth_controller_1.loginSchema), (req, res) => auth_controller_1.authController.login(req, res));
+router.get('/me', auth_middleware_1.authenticateToken, (req, res) => auth_controller_1.authController.me(req, res));
+router.put('/profile', auth_middleware_1.authenticateToken, (0, validate_middleware_1.validateBody)(auth_controller_1.updateProfileSchema), (req, res) => auth_controller_1.authController.updateProfile(req, res));
+router.post('/change-password', auth_middleware_1.authenticateToken, (0, validate_middleware_1.validateBody)(auth_controller_1.changePasswordSchema), (req, res) => auth_controller_1.authController.changePassword(req, res));
+router.post('/delete-account', auth_middleware_1.authenticateToken, (0, validate_middleware_1.validateBody)(auth_controller_1.deleteAccountSchema), (req, res) => auth_controller_1.authController.deleteAccount(req, res));
+exports.default = router;

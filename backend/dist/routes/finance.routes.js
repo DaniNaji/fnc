@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const finance_controller_1 = require("../controllers/finance.controller");
+const auth_middleware_1 = require("../middleware/auth.middleware");
+const router = (0, express_1.Router)();
+router.use(auth_middleware_1.authenticateToken);
+router.get('/', (req, res) => finance_controller_1.financeController.getFinances(req, res));
+router.put('/', (req, res) => finance_controller_1.financeController.saveFinances(req, res));
+router.post('/bookings', (req, res) => finance_controller_1.financeController.addBooking(req, res));
+router.delete('/bookings/:id', (req, res) => finance_controller_1.financeController.deleteBooking(req, res));
+router.post('/reset', (req, res) => finance_controller_1.financeController.resetFinances(req, res));
+router.get('/export', (req, res) => finance_controller_1.financeController.exportData(req, res));
+exports.default = router;

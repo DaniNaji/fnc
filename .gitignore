@@ -47,7 +47,6 @@ app_database.json
 # ABHÄNGIGKEITEN & BUILDS
 # ==========================================
 node_modules/
-dist/
 build/
 .vercel/
 .next/
